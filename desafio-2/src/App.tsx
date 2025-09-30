@@ -1,35 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import Card from './components/Card';
+import type * as Imovel from './interfaces/Imovel';
+
+const imoveis: Imovel.Imovel[] = [
+  {
+    id: 1,
+    imagem: 'assets/imagem1.png',
+    valor: 'R$ 2.260,00',
+    titulo: 'Apartamento, Papicu, 2 Quartos',
+    endereco: 'Fortaleza - CE / Rua Anderson',
+    quartos: 2,
+    banheiros: 2,
+  },
+  {
+    id: 2,
+    imagem: '/assets/imagem2.png',
+    valor: 'R$ 3.100,00',
+    titulo: 'Casa, Meireles, 3 Quartos',
+    endereco: 'Fortaleza - CE / Av. Beira Mar',
+    quartos: 3,
+    banheiros: 3,
+  },
+  {
+    id: 3,
+    imagem: '/assets/imagem3.png',
+    valor: 'R$ 1.850,00',
+    titulo: 'Apartamento, Aldeota, 1 Quarto',
+    endereco: 'Fortaleza - CE / Rua Barbosa de Freitas',
+    quartos: 1,
+    banheiros: 1,
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [termoBusca, setTermoBusca] = useState('');
+  const [mostrarFavoritos, setMostrarFavoritos] = useState(false);
+  const [favoritos, setFavoritos] = useState<number[]>([]);
+
+  const toggleFavorito = (id: number) => {
+    if (favoritos.includes(id)) {
+      setFavoritos(favoritos.filter((favId) => favId !== id));
+    } else {
+      setFavoritos([...favoritos, id]);
+    }
+  };
+
+  const imoveisFiltrados = imoveis
+    .filter((imovel) => {
+      const busca = termoBusca.toLowerCase();
+      return (
+        imovel.titulo.toLowerCase().includes(busca) ||
+        imovel.endereco.toLowerCase().includes(busca)
+      );
+    })
+    .filter((imovel) => (mostrarFavoritos ? favoritos.includes(imovel.id) : true));
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={{ padding: '30px 20px', fontFamily: 'Montserrat, sans-serif', backgroundColor: '#f0f2f5', minHeight: '100vh' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '25px', color: '#333' }}>Meus Imóveis</h1>
+
+      <div className="filtro-container">
+        <input
+          type="text"
+          placeholder="Buscar imóvel por título ou endereço..."
+          value={termoBusca}
+          onChange={(e: { target: { value: any; }; }) => setTermoBusca(e.target.value)}
+          className="input-busca"
+        />
+
+        <label className="checkbox-container">
+          <input
+            type="checkbox"
+            checked={mostrarFavoritos}
+            onChange={() => setMostrarFavoritos(!mostrarFavoritos)}
+          />
+          Mostrar apenas favoritos
+        </label>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className="container-de-cards">
+        {imoveisFiltrados.length > 0 ? (
+          imoveisFiltrados.map((imovel) => (
+            <Card
+              key={imovel.id}
+              imovel={imovel}
+              estaFavoritado={favoritos.includes(imovel.id)}
+              toggleFavorito={toggleFavorito}
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: 'center', marginTop: '40px', color: '#888' }}>
+            Nenhum imóvel encontrado.
+          </p>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,240 @@
+/* Estilos globais para todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para o body */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+  background-color: #f0f2f5; /* Cor de fundo */
+}
+
+/* Contêiner de cards */
+.container-de-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* Estilo do card */
+.card {
+  background-color: #fff;
+  width: 240px;
+  height: 260px; /* Ajustei a altura para o layout */
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px #aaaaaa;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-img-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Estilo da imagem do card */
+.card img {
+  width: 100%;
+  height: 130px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+}
+.card-image-conteiner:hover .card img {
+  transform: scale(1.2);
+}
+
+/* Estilos para o conteúdo do card */
+.card-content {
+  padding: 10px;
+  flex-grow: 1; 
+  background-color: #fff;
+}
+
+/* Estilos do valor e do botão */
+.container-valor-e-botao {
+  display: flex;
+  justify-content: space-between; /* Alinha o valor à esquerda e o botão à direita */
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Estilos do valor */
+.container-valor-e-botao span{
+  font-size: 19px;
+  font-weight: 700;
+  color: rgb(112, 167, 255);
+}
+
+/* Estilo do ícone de coração */
+.coracao i {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+/* Estilo ao passar o mouse sobre o ícone */
+.coracao i:hover {
+  color: #ff0000;
+}
+
+/* Estilos para o título do card */
+.card h1 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Estilos para o subtítulo do card */
+.card h3 {
+  font-size: 20px;
+  color: #aaaaaa;
+  font-weight: 400;
+  margin: 5px 0 0;
+}
+
+/* Estilos para as informações do card (quartos e banheiros) */
+.card-info {
+  display: flex;
+  justify-content: space-around; /* Distribui as informações uniformemente */
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #eeeeee;
+}
+
+/* Estilos dos ícones de quartos e banheiros */
+.icone {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilo dos ícones (cor laranja) */
+.icone i {
+  color: #ff8c00; /* Cor dos ícones de quarto e banheiro */
+  font-size: 16px;
+}
+
+/* Estilo do texto dentro da icone (quartos, banheiros) */
+.icone h2, .icone h4 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #555;
+  margin: 0;
+}
+.icone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555555;
+}
+/* filtro de busca e favoritos */
+
+.filtro-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.input-busca {
+  width: 100%;
+  max-width: 310px;
+  padding: 12px 20px;
+  font-size: 10px;
+  border: 2px rgb(112, 167, 255);
+  border-radius: 30px;
+  background-color: #f7f9fc;
+  color: #333;
+  box-shadow: 0 0 0 2px transparent;
+  transition: all 0.3s ease;
+  outline: none
+}
+
+.input-busca::placeholder {
+  color: #aaccee;
+  font-style: italic;
+}
+
+.input-busca:focus {
+  background-color: #fff;
+  border-color: rgb(112, 167, 255);
+  box-shadow: 0 0 3px rgb(112, 167, 255);
+}
+.input-busca:hover {
+  background-color: #eef2f7;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #818181;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  font-weight: 600;
+  border: rgb(112, 167, 255);
+}
+
+.container-de-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.cardImageContainer {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cardImageContainer:hover .cardImage {
+  transform: scale(1.1);
+}
+.card {
+  background-color: #fff;
+  width: 240px;
+  height: 270px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px #aaaaaa;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.15);
+}
